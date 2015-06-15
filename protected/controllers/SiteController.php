@@ -54,19 +54,26 @@ class SiteController extends Controller {
             if ($model->save()) {
                 $_parserSite = new ParserSite($model->domain);
 
-               // $_parserSite->run();
+                // $_parserSite->run();
                 $this->redirect('/');
             }
         }
 
+        $modelGrid = new Sites('search');
+        $modelGrid->unsetAttributes();  // clear any default values
+        if (isset($_GET['Sites'])) {
+            $modelGrid->attributes = $_GET['Sites'];
+            
+        }
+
+        
 
         $items = Options::model()->findAll();
-        $this->render('index', array('model' => $model, 'items' => $items));
+        $this->render('index', array('model' => $model, 'items' => $items, "modelGrid"=>$modelGrid));
     }
 
     public function actionStatus() {
-       echo Options::model()->count("status=:status", array(":status"=>"read"));
-         
+        echo Options::model()->count("status=:status", array(":status" => "read"));
     }
 
     /**
