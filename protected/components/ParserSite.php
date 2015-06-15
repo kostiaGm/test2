@@ -55,16 +55,7 @@ class ParserSite {
         }
 
         if (!empty($this->_arrUrl)) {
-            foreach ($this->_arrUrl as $url4 => $level_) {
-
-              /*  if (!isset($this->_enteredUrls[$url4])) {
-                    $pageReaderCurl1 = new PageReaderCurl($url4);
-                    $pageReaderCurl1->parse();
-                    $urls = $pageReaderCurl1->getUrls();
-
-                    //$this->_insert($pageReaderCurl, $level);
-                } */
-                
+            foreach ($this->_arrUrl as $url4 => $level_) {             
                 if (!isset($this->_enteredUrls[$url4])) 
                 $this->run($url4, $level_ + 1);
             }

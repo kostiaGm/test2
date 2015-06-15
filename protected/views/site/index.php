@@ -26,6 +26,21 @@ $this->pageTitle = Yii::app()->name;
 
     $this->widget('zii.widgets.grid.CGridView', array(
         'dataProvider' => $dataProvider,
+        'filter'=>Sites::model(),
+        'columns' => array(
+            'id',
+            'url',
+            'header',
+            'title',
+            'description',
+            'isGa',
+            array(
+                'name'=>'level',
+                'type'=>'html',
+                'filter'=>CHtml::dropDownList('level',Sites::model(),  CHtml::listData(Sites::model()->findAll(), 'level', 'level'))
+            )
+           
+        )
     ));
     ?>
 </div>

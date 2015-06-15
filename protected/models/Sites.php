@@ -87,6 +87,7 @@ class Sites extends CActiveRecord
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('isGa',$this->isGa,true);
+		$criteria->compare('level',$this->level,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

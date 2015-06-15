@@ -56,10 +56,10 @@
 <script type="text/javascript">
     $(function () {
         $('#load-content').hide();
-        $('#index-content').show();
+   //     $('#index-content').show();
 
         $('#bt-go').on('click', function () {
-            $('#index-content').hide();
+          //  $('#index-content').hide();
             $('#load-content').show();
         });
 
@@ -71,10 +71,10 @@
         $.get("/site/status", function (data) {
             if (data == '0') {
                 $('#load-content').hide();
-                $('#index-content').show();
+              //  $('#index-content').show();
                 clearInterval(timerId);
             } else {
-                $('#index-content').hide();
+              //  $('#index-content').hide();
                 $('#load-content').show();
             }
         });
