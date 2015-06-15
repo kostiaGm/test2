@@ -9,6 +9,7 @@ return array(
     'name' => 'My Web Application',
     // preloading 'log' component
     'preload' => array('log'),
+    'language'=>'ru',
     // autoloading model and component classes
     'import' => array(
         'application.models.*',
@@ -16,17 +17,20 @@ return array(
     ),
     'modules' => array(
     // uncomment the following to enable the Gii tool
-    /*
+   
       'gii'=>array(
       'class'=>'system.gii.GiiModule',
-      'password'=>'Enter Your Password Here',
+      'password'=>'admin',
       // If removed, Gii defaults to localhost only. Edit carefully to taste.
       'ipFilters'=>array('127.0.0.1','::1'),
       ),
-     */
+    
     ),
     // application components
     'components' => array(
+        'cache' => array(
+            'class'=>'CFileCache'
+        ),
         'user' => array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,

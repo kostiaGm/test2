@@ -24,11 +24,49 @@ class SiteController extends Controller {
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
      */
-    public function actionIndex() {
+    public function actionIndex($id = '') {
         // renders the view file 'protected/views/site/index.php'
         // using the default layout 'protected/views/layouts/main.php'
-        
-        $this->render('index');
+
+        $model = null;
+        if (is_numeric($id))
+            $model = Options::model()->findByPk($id);
+
+        if (!$model)
+            $model = new Options;
+
+        // uncomment the following code to enable ajax-based validation
+        /*
+          if(isset($_POST['ajax']) && $_POST['ajax']==='options-options-form')
+          {
+          echo CActiveForm::validate($model);
+          Yii::app()->end();
+          }
+         */
+
+
+
+        if (isset($_POST['Options'])) {
+
+
+
+            $model->attributes = $_POST['Options'];
+            if ($model->save()) {
+                $_parserSite = new ParserSite($model->domain);
+
+               // $_parserSite->run();
+                $this->redirect('/');
+            }
+        }
+
+
+        $items = Options::model()->findAll();
+        $this->render('index', array('model' => $model, 'items' => $items));
+    }
+
+    public function actionStatus() {
+       echo Options::model()->count("status=:status", array(":status"=>"read"));
+         
     }
 
     /**

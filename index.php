@@ -1,5 +1,6 @@
 <?php
-
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 // change the following paths if necessary
 define('PATH', dirname(__FILE__));
 $yii=PATH.'/yii/framework/yii.php';
