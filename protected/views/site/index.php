@@ -19,30 +19,27 @@ $this->pageTitle = Yii::app()->name;
         </div>
     </div>
     <hr>
-    <?php
-    $dataProvider = new CActiveDataProvider('Sites', array(
-            // 'sort'=>array('attributes'=>array('item1','item2','item3'))
-    ));
-
-    $this->widget('zii.widgets.grid.CGridView', array(
-        'dataProvider' => $dataProvider,
-        'filter'=>Sites::model(),
-        'columns' => array(
-            'id',
-            'url',
-            'header',
-            'title',
-            'description',
-            'isGa',
-            array(
-                'name'=>'level',
-                'type'=>'html',
-                'filter'=>CHtml::dropDownList('level',Sites::model(),  CHtml::listData(Sites::model()->findAll(), 'level', 'level'))
-            )
-           
-        )
-    ));
-    ?>
+  <?php $this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'sites-grid',
+	'dataProvider'=>$modelGrid->search(),
+	'filter'=>$modelGrid,
+      //'ajaxUrl'=>'/',
+	'columns'=>array(
+		'id',
+		'url',
+		'header',
+		'title',
+		'description',
+		'isGa',
+            'level'
+		/*
+		'domain',
+		'level',
+		'charLength',
+		*/
+		
+	),
+)); ?>
 </div>
 <div id="load-content hide">
     <h2>Данные загружаются. Подождите...</h2>
